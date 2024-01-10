@@ -1,0 +1,9 @@
+# Needed when using Bazel >=7 with a WORKSPACE file instead of a MODULE.bazel.
+# See https://github.com/bazelbuild/bazel/issues/18958.
+build --noenable_bzlmod
+
+# Use, e.g.: --config=arm_cortex_m, on the bazel command line to indicate an
+# embedded platform rather than using --platforms directly, so the user only
+# has to set one option, and the build can indirectly set as many as needed.
+build:arm_cortex_m --platforms=:arm_cortex_m
+test:arm_cortex_m --run_under=/foo/bar/qemu
